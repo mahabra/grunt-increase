@@ -34,8 +34,7 @@
     "gruntsnipper"
   ],
   "files": [
-    "tasks",
-    "LICENSE-MIT"
+    "tasks"
   ],
   "ignore": [
     ".git",
