@@ -1,23 +1,23 @@
 {
-  "name": "grunt-release",
+  "name": "grunt-increase",
   "description": "Helps to increase version of product and create comments to it.",
-  "version": "0.0.2",
-  "homepage": "https://github.com/morulus/grunt-snipper",
+  "version": "0.0.3",
+  "homepage": "https://github.com/morulus/grunt-increase",
   "author": {
     "name": "Vladimir Kalmykov",
     "url": "http://morulus.ru/"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/morulus/grunt-release.git"
+    "url": "git://github.com/morulus/grunt-increase.git"
   },
   "bugs": {
-    "url": "https://github.com/morulus/grunt-release/issues"
+    "url": "https://github.com/morulus/grunt-increase/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/morulus/grunt-release/blob/master/LICENSE-MIT"
+      "url": "https://github.com/morulus/grunt-increase/blob/master/LICENSE-MIT"
     }
   ],
   "engines": {
@@ -31,7 +31,7 @@
     "grunt": "^0.4.2"
   },
   "keywords": [
-    "gruntsnipper"
+    "grunt","increase","release"
   ],
   "files": [
     "tasks"

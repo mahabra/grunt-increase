@@ -1,4 +1,4 @@
-Grunt-release
+Grunt-increase
 --
 
 > Helps to increase version of product and create comments to it.
@@ -7,12 +7,12 @@ Grunt-release
 
 Load via npm
 ```shell
-npm install grunt-release --save-dev
+npm install grunt-increase --save-dev
 ```
 
 ## Creating tasks
 
-Task `release` has next options:
+Task `increase` has next options:
 - degree: deep of subversion, from 1 to 3. `1.2.3`;
 - json: location of bower/package.json
 - report: `{`location-of-the-report-file`: `marker-of-begining`}`
@@ -21,7 +21,7 @@ Here is example:
 
 ```javascript
 grunt.initConfig({
-	release: {
+	increase: {
 		tick: { // 
 			degree: 3,
 			json:  '../bower.json',
@@ -44,13 +44,13 @@ In this example, task `tick` (with degree 1) will increase current version `1.0.
 
 Dont forget to load and register task.
 ```js
-grunt.loadNpmTasks('grunt-release');
+grunt.loadNpmTasks('grunt-increase');
 ```
 There are no clear rules for how to register this task. As a recommendation it might look like this:
 ```js
-grunt.registerTask('up-tick', ['release:tick']);
-grunt.registerTask('up-model', ['release:model']);
-grunt.registerTask('up-version', ['release:version']);
+grunt.registerTask('up-tick', ['increase:tick']);
+grunt.registerTask('up-model', ['increase:model']);
+grunt.registerTask('up-version', ['increase:version']);
 ```
 
 ## Comments after increasing

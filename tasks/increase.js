@@ -2,8 +2,8 @@ var path = require('path');
 require('colors');
 module.exports = function( grunt ) {
 	 // Internal lib.
-  	var release = require('./lib/lib.js').init(grunt);
-  	 grunt.registerMultiTask('release', 'Auto increase version of package', function() {
+  	var increase = require('./lib/lib.js').init(grunt);
+  	 grunt.registerMultiTask('increase', 'Auto increase version of package', function() {
   	 	var done = this.async();
   	 	var options = {
 	    	degree: 3,
@@ -30,7 +30,7 @@ module.exports = function( grunt ) {
   	 		: (("string"===typeof options.report) ? (reportFile=options.report,reportAnchor='## News') : (reportFile=false,reportAnchor=false) );
   	 		
   	 		// Patch package json
-  	 		release.patchPackageJson({
+  	 		increase.patchPackageJson({
   	 			file: process.cwd()+'/'+file,
   	 			degree: options.degree
   	 		}, function(versionTxt) {
@@ -38,7 +38,7 @@ module.exports = function( grunt ) {
   	 			// Patch readme.json
   	 			if (reportFile) {
 
-	  	 			release.patchReportFile({
+	  	 			increase.patchReportFile({
 	  	 				file: reportFile,
 	  	 				anchor: reportAnchor
 	  	 			}, function() {
