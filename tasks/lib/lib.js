@@ -5,60 +5,65 @@ require('colors');
 
 prompt.message = '';
 exports.init = function(grunt) {
-	return new (function() {
-		this.versionTxt = '0.0.0';
+  return new (function() {
+    this.versionTxt = '0.0.0';
     this.news = [];
-		this.patchPackageJson = function(data, callback) {
-			var bowerPsch = data.file;
-  	 		var info = grunt.file.readJSON(bowerPsch);
-  	 		if ("object"!==typeof info) {
-  	 			grunt.err.warn(data.file+' corrupt!');
-  	 			return;
-  	 		}
-  	 		/* Reset version to null if not exists */
-  	 		if ("string"!==typeof info.version) info.version='0.0.0';
+    this.patchPackageJson = function(data, callback) {
+      var bowerPsch = data.file;
+        var info = grunt.file.readJSON(bowerPsch);
+        if ("object"!==typeof info) {
+          grunt.err.warn(data.file+' corrupt!');
+          return;
+        }
+        /* Reset version to null if not exists */
+        if ("string"!==typeof info.version) info.version='0.0.0';
 
 
-  	 		var version = info.version.split('.');
+        var version = info.version.split('.');
 
 
-  	 		while (version.length<3) {
-  	 			version.push('0');
-  	 		};
-  	 		for (var i=0;i<version.length;i++) {
-  	 			version[i] = parseInt(version[i]);
-  	 			if (isNaN(version[i])) {
-  	 				/* Reset version to null if currupt */
-  	 				version = [0,0,0]; break;
-  	 			}
-  	 		};
+        while (version.length<3) {
+          version.push('0');
+        };
+        for (var i=0;i<version.length;i++) {
+          version[i] = parseInt(version[i]);
+          if (isNaN(version[i])) {
+            /* Reset version to null if currupt */
+            version = [0,0,0]; break;
+          }
+        };
 
-  	 		/* Protego from inaccessible index */
-  	 		if ("undefined"===typeof version[data.degree-1]) {
-  	 			for (var i=0;i<data.degree-1;i++) {
-  	 				if ("number"!==typeof version[i]) version[i] = 0;
-  	 			}
-  	 		};
+        /* Protego from inaccessible index */
+        if ("undefined"===typeof version[data.degree-1]) {
+          for (var i=0;i<data.degree-1;i++) {
+            if ("number"!==typeof version[i]) version[i] = 0;
+          }
+        };
 
-  	 		/* Up degree value */
-  	 		version[data.degree-1]++;
+        /* Up degree value */
+        var degree = data.degree;
+        version[degree-1]++;
+        while(degree<version.length) {
+          degree++;
+          version[degree-1]=0;
+        };
 
-  	 		this.versionTxt = version.join('.');
-  	 		info['version'] = this.versionTxt;
+        this.versionTxt = version.join('.');
+        info['version'] = this.versionTxt;
         
-  	 		/* Write back to file */
+        /* Write back to file */
         var that = this;
        
-  	 		fs.writeFile(bowerPsch, JSON.stringify(info,null,'\t'), 'utf-8', function(err) {
+        fs.writeFile(bowerPsch, JSON.stringify(info,null,'\t'), 'utf-8', function(err) {
           if (err) {
             console.log(err); return;
           }
-  	 			if ("function"===typeof callback) callback(that.versionTxt);
-  	 		});
-		};
-		this.patchReportFile = function(data, callback) {
+          if ("function"===typeof callback) callback(that.versionTxt);
+        });
+    };
+    this.patchReportFile = function(data, callback) {
      
-			this.askForNews(function() {
+      this.askForNews(function() {
         if (this.news.length>0) {
 
           var fc = fs.readFileSync(data.file, 'utf-8');
@@ -81,7 +86,7 @@ exports.init = function(grunt) {
           callback();
         }
       });
-		};
+    };
     this.askForNews = function(callback) {
        
         var that = this;
@@ -107,6 +112,6 @@ exports.init = function(grunt) {
           }
         );
     };
-		
-	})();
+    
+  })();
 }
