@@ -1,18 +1,11 @@
 {
   "name": "grunt-increase",
-  "description": "Helps to increase version of product and create comments to it.",
-  "version": "0.0.3",
-  "homepage": "https://github.com/morulus/grunt-increase",
+  "main": "index.js",
+  "description": "",
+  "version": "0.1.0",
   "author": {
     "name": "Vladimir Kalmykov",
-    "url": "http://morulus.ru/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/morulus/grunt-increase.git"
-  },
-  "bugs": {
-    "url": "https://github.com/morulus/grunt-increase/issues"
+    "email": "vladimirmorulus@gmail.com"
   },
   "licenses": [
     {
@@ -23,21 +16,5 @@
   "engines": {
     "node": ">=0.10.0"
   },
-  "dependencies": {
-    "prompt": "~0.2.14",
-    "colors": "~1.0.3"
-  },
-  "devDependencies": {
-    "grunt": "^0.4.2"
-  },
-  "keywords": [
-    "grunt","increase","release"
-  ],
-  "files": [
-    "tasks"
-  ],
-  "ignore": [
-    ".git",
-    ".htaccess"
-  ]
+  "keywords": []
 }
